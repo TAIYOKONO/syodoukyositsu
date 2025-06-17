@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja" id="page-lang" data-lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お申し込み・お問い合わせ - Mia Shodo</title>
+    <!-- Google Fonts and Font Awesome from index.html -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- グローバル設定と共通スタイル (index.htmlと同様) --- */
+        :root {
+            --bg-color: #FDFBF5;
+            --text-color: #333333;
+            --accent-color: #D9333F;
+            --font-heading: 'Noto Serif JP', serif;
+            --font-body: 'Noto Sans JP', sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-body); line-height: 1.8; font-size: 16px; }
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        .section { padding: 150px 0 100px; text-align: center; }
+        h2 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 60%; height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* --- 翻訳機能のためのスタイル --- */
+        [data-lang="en"] .lang-ja { display: none; }
+        [data-lang="ja"] .lang-en { display: none; }
+        
+        /* --- ヘッダーとフッター (index.htmlと同様) --- */
+        .site-header { position: sticky; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; z-index: 1000; background-color: rgba(253, 251, 245, 0.95); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .logo img { height: 50px; }
+        .main-nav a { color: var(--text-color); text-decoration: none; font-weight: bold; margin-left: 20px; padding: 8px 12px; border-radius: 5px; transition: background-color 0.3s; }
+        .main-nav a:hover { background-color: rgba(0,0,0,0.05); }
+        .contact-btn { background-color: var(--accent-color); color: white !important; }
+        .contact-btn:hover { background-color: #b82a34; }
+        .site-footer { text-align: center; padding: 40px 0; border-top: 1px solid #eee; margin-top: 50px; }
+        .site-footer .logo img { height: 40px; margin-bottom: 20px; }
+        .social-buttons { margin-bottom: 30px; }
+        .social-buttons a { color: var(--text-color); font-size: 2rem; margin: 0 20px; transition: color 0.3s; }
+        .social-buttons a:hover { color: var(--accent-color); }
+        .footer-nav p { color: #666; }
+        .footer-nav a { color: #666; text-decoration: none; }
+        
+        /* --- フォーム専用スタイル --- */
+        .form-container { 
+            max-width: 800px; 
+            margin: 40px auto 0; 
+            text-align: left; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 8px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+        }
+        .form-group-checkbox { display: flex; align-items: center; }
+        .form-group-checkbox input { width: auto; margin-right: 10px; transform: scale(1.2); }
+        .submit-btn {
+            display: block; width: 100%; padding: 15px; border: none;
+            background-color: var(--accent-color); color: white;
+            font-size: 1.2rem; font-weight: bold; cursor: pointer;
+            border-radius: 5px; transition: background-color 0.3s;
+        }
+        .submit-btn:hover { background-color: #b82a34; }
+        #calendar-embed iframe { border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <header class="site-header" id="site-header">
+        <div class="logo">
+            <a href="index.html"><img src="https://i.imgur.com/uR5sH6A.jpeg" alt="MIA 書道 ロゴ"></a>
+        </div>
+        <nav class="main-nav">
+            <a href="contact.html" class="contact-btn">
+                <span class="lang-ja">お申し込み</span>
+                <span class="lang-en">Booking</span>
+            </a>
+            <a href="#" id="lang-toggle-btn">
+                <span class="lang-ja">English</span>
+                <span class="lang-en">日本語</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container section">
+            <h2>
+                <span class="lang-ja">お申し込み・お問い合わせ</span>
+                <span class="lang-en">Booking & Contact</span>
+            </h2>
+            
+            <div id="calendar-embed">
+                <p style="text-align:center; margin-bottom:20px; font-size: 1.1rem;">
+                    <span class="lang-ja"><b>▼ お申し込み可能日時のご確認 ▼</b></span>
+                    <span class="lang-en"><b>▼ Check our availability below ▼</b></span>
+                </p>
+                <!-- ▼▼▼ ここにお客様ご自身のGoogleカレンダーの埋め込みコードを貼り付けてください ▼▼▼ -->
+                <iframe src="https://calendar.google.com/calendar/embed?src=ja.japanese%23holiday%40group.v.calendar.google.com&ctz=Asia%2FTokyo" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+                <!-- ▲▲▲ ここまで ▲▲▲ -->
+            </div>
+
+            <div class="form-container">
+                <!-- ▼▼▼ ここにFormspreeで取得した、お客様ご自身のURLを設定してください ▼▼▼ -->
+                <form action="https://formspree.io/f/YOUR_UNIQUE_CODE" method="POST">
+                    
+                    <!-- 送信完了時のリダイレクト先を設定 -->
+                    <input type="hidden" name="_next" value="https://YOUR_SITE_DOMAIN/thank-you.html">
+
+                    <!-- フォーム項目 -->
+                    <div class="form-group"><label for="name"><span class="lang-ja">氏名</span><span class="lang-en">Name</span></label><input type="text" id="name" name="氏名" required data-ja-placeholder="山田 太郎" data-en-placeholder="John Smith"></div>
+                    <div class="form-group"><label for="age"><span class="lang-ja">年齢</span><span class="lang-en">Age</span></label><input type="number" id="age" name="年齢" data-ja-placeholder="35" data-en-placeholder="35"></div>
+                    <div class="form-group"><label for="participants"><span class="lang-ja">参加人数</span><span class="lang-en">Number of participants</span></label><input type="number" id="participants" name="参加人数" required min="1" data-ja-placeholder="2" data-en-placeholder="2"></div>
+                    <div class="form-group"><label for="date1"><span class="lang-ja">参加日の候補①</span><span class="lang-en">Preferred date 1</span></label><input type="date" id="date1" name="参加日の候補1" required></div>
+                    <div class="form-group"><label for="date2"><span class="lang-ja">参加日の候補②</span><span class="lang-en">Preferred date 2</span></label><input type="date" id="date2" name="参加日の候補2"></div>
+                    <div class="form-group"><label for="date3"><span class="lang-ja">参加日の候補③</span><span class="lang-en">Preferred date 3</span></label><input type="date" id="date3" name="参加日の候補3"></div>
+                    <div class="form-group"><label for="course"><span class="lang-ja">申し込みコース</span><span class="lang-en">Course</span></label><select id="course" name="申し込みコース"><option value="体験コース" data-ja="体験コース (10,000円)" data-en="Standard Course (¥10,000)"></option><option value="ランチ付き体験コース" data-ja="ランチ付き体験コース (12,000円)" data-en="Course with Lunch (¥12,000)"></option></select></div>
+                    <div class="form-group"><label for="language"><span class="lang-ja">希望言語</span><span class="lang-en">Preferred language</span></label><select id="language" name="希望言語"><option value="日本語" data-ja="日本語" data-en="Japanese"></option><option value="英語" data-ja="英語" data-en="English"></option></select></div>
+                    <div class="form-group-checkbox"><input type="checkbox" id="agreement" name="agreement" required><label for="agreement"><span class="lang-ja">内容を確認し、申し込みます。</span><span class="lang-en">I confirm the details and wish to apply.</span></label></div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <span class="lang-ja">送信する</span>
+                        <span class="lang-en">Submit</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="social-buttons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LINE"><i class="fab fa-line"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <div class="logo">
+            <a href="index.html"><img src="https://i.imgur.com/uR5sH6A.jpeg" alt="MIA 書道 ロゴ"></a>
+        </div>
+        <nav class="footer-nav">
+             <p>&copy; 2025 Mia Shodo | <a href="#">プライバシーポリシー</a></p>
+        </nav>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            const pageElement = document.documentElement;
+            
+            // 全ての翻訳対象テキストを更新する関数
+            function updateTexts(lang) {
+                // <html>タグの言語属性を更新
+                pageElement.setAttribute('data-lang', lang);
+                pageElement.setAttribute('lang', lang === 'ja' ? 'ja' : 'en');
+
+                // <select>内の<option>のテキストを更新
+                document.querySelectorAll('option[data-ja]').forEach(el => {
+                    el.innerText = el.getAttribute(`data-${lang}`);
+                });
+                
+                // placeholder属性を持つ要素を更新
+                document.querySelectorAll('[data-ja-placeholder]').forEach(el => {
+                    el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
+                });
+            }
+
+            // 言語切替ボタンのクリックイベント
+            if (langToggleBtn) {
+                 langToggleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const currentLang = pageElement.getAttribute('data-lang');
+                    const newLang = currentLang === 'ja' ? 'en' : 'ja';
+                    updateTexts(newLang);
+                });
+            }
+            
+            // ページ読み込み時に初期言語でテキストを設定
+            updateTexts(pageElement.getAttribute('data-lang') || 'ja');
+        });
+    </script>
+</body>
+</html>
