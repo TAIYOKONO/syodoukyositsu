@@ -25,12 +25,19 @@
             --font-body: 'Noto Sans JP', sans-serif;
             --font-shodo: 'Yuji Syuku', serif; /* 書道感のあるフォント */
             --font-english-wa: 'Shippori Mincho', serif; /* 和風英語フォント */
+            --gallery-scroll-duration: 25s; 
         }
 
         /* (基本的なスタイル) */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-body); line-height: 1.8; font-size: 16px; }
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            font-family: var(--font-body); 
+            line-height: 1.8; 
+            font-size: clamp(16px, 1.5vw, 18px); 
+        }
         .container { width: 90%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
         img { max-width: 100%; height: auto; display: block; border-radius: 8px; }
         .section { padding: 100px 0; position: relative; overflow: hidden; }
@@ -61,7 +68,7 @@
         h2 {
             font-family: var(--font-heading);
             font-weight: 700;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid Typography */
             text-align: center;
             margin-bottom: 60px;
             padding-bottom: 20px;
@@ -73,22 +80,32 @@
             transform: translateX(-50%); width: 60%; height: 3px;
             background-color: var(--accent-color);
         }
-        h3 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 20px; }
+        h3 { font-family: var(--font-heading); font-size: clamp(1.5rem, 4vw, 1.8rem); margin-bottom: 20px; }
 
         /* --- ヘッダー --- */
         .site-header { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; z-index: 1000; transition: background-color 0.3s ease; }
         .site-header.scrolled { background-color: rgba(253, 251, 245, 0.95); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .logo img { height: 60px; /* サイズを大きく */ }
+        .logo img { height: 60px; }
         .main-nav a { color: var(--text-color); text-decoration: none; font-weight: bold; margin-left: 20px; padding: 8px 12px; border-radius: 5px; transition: background-color 0.3s; }
         .main-nav a:hover { background-color: rgba(0,0,0,0.05); }
         .contact-btn { background-color: var(--accent-color); color: white !important; }
         .contact-btn:hover { background-color: #b82a34; }
 
         /* --- メインビジュアル --- */
-        .hero { height: 100vh; width: 100%; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690305/1749915790557_q5n8oa.jpg'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; position: relative; }
+        .hero { 
+            height: 100vh; 
+            width: 100%; 
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690305/1749915790557_q5n8oa.jpg'); /* PC用画像 */
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            position: relative; 
+        }
         .hero-title { color: white; writing-mode: vertical-rl; text-orientation: mixed; padding-right: 5%; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-        .hero-title .lang-ja { font-family: var(--font-shodo); font-size: 4.5rem; }
-        .hero-title .lang-en { font-family: var(--font-english-wa); font-size: 3rem; letter-spacing: 0.1em; }
+        .hero-title .lang-ja { font-family: var(--font-shodo); font-size: clamp(3.5rem, 10vw, 6rem); }
+        .hero-title .lang-en { font-family: var(--font-english-wa); font-size: clamp(2.5rem, 8vw, 4rem); letter-spacing: 0.1em; }
         
         /* --- 2カラムレイアウト --- */
         .two-columns { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; text-align: left; }
@@ -104,7 +121,7 @@
         
         /* --- 新ギャラリー --- */
         .gallery-wrapper { overflow: hidden; padding: 20px 0; }
-        .gallery-scroller { display: flex; animation: scroll 25s linear infinite; }
+        .gallery-scroller { display: flex; animation: scroll var(--gallery-scroll-duration) linear infinite; }
         .gallery-scroller img {
             height: 250px;
             width: auto;
@@ -212,11 +229,15 @@
 
         /* --- PC版スタイル --- */
         @media (min-width: 768px) {
-            body { font-size: 18px; }
-            .hero-title .lang-ja { font-size: 6rem; }
-            .hero-title .lang-en { font-size: 4rem; }
             .two-columns { grid-template-columns: 1fr 1fr; }
             .lesson-card-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
+
+        /* ▼▼▼ スマホ用のMV画像を設定 ▼▼▼ */
+        @media (max-width: 767px) {
+            .hero {
+                 background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690312/1749915793507_ojkub1.jpg');
+            }
         }
     </style>
 </head>
@@ -251,7 +272,11 @@
             <div class="container">
                 <div class="two-columns">
                      <div class="story-image">
-                        <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690314/1749915811112_zbajjf.jpg" alt="指導中の講師">
+                        <!-- Responsive Image with <picture> -->
+                        <picture>
+                            <source srcset="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690314/1749915811112_zbajjf.jpg" media="(min-width: 600px)">
+                            <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/c_scale,w_600/v1750690314/1749915811112_zbajjf.jpg" alt="指導中の講師">
+                        </picture>
                     </div>
                     <div class="story-text">
                         <h2>
@@ -294,12 +319,18 @@
                             <h3><span class="lang-ja">① 日本をもっと好きになる文化体験</span><span class="lang-en">① A Deeper Connection with Japan</span></h3>
                             <p><span class="lang-ja">筆を持ち、墨の香りに包まれ、精神を集中させる。その一つ一つの所作が、あなたを日本の伝統文化の奥深くへと誘います。ただ書くだけではない、日本の心に触れる時間を通して、この国をもっと好きになってください。</span><span class="lang-en">Hold the brush, enveloped in the scent of ink, and focus your mind. Each of these actions invites you deep into traditional Japanese culture. It's more than just writing; it's a time to touch the heart of Japan and grow to love this country even more.</span></p>
                         </div>
-                        <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690290/1749915773165_j829gs.jpg" alt="文化体験の写真">
+                        <picture>
+                           <source srcset="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690313/1749915794741_ngobsp.jpg" media="(min-width: 600px)">
+                           <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/c_scale,w_600/v1750690313/1749915794741_ngobsp.jpg" alt="文化体験の写真">
+                        </picture>
                     </div>
                 </div>
                  <div class="value-item">
                     <div class="two-columns">
-                        <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750863123/88475063_d5tvxe.webp" alt="言葉の美しさ">
+                        <picture>
+                           <source srcset="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1751042685/ChatGPT_Image_2025%E5%B9%B46%E6%9C%8826%E6%97%A5_08_59_33_aypyns.png" media="(min-width: 600px)">
+                           <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/c_scale,w_600/v1751042685/ChatGPT_Image_2025%E5%B9%B46%E6%9C%8826%E6%97%A5_08_59_33_aypyns.png" alt="言葉の美しさ">
+                        </picture>
                         <div>
                             <h3><span class="lang-ja">② 言葉のなかに美しさを見つける</span><span class="lang-en">② Discover the Art in Language</span></h3>
                             <p><span class="lang-ja">漢字は、単なる記号ではありません。一文字一文字に意味や物語が宿る、美しい絵画のようなものです。日本語が持つ造形美、その芸術性を、ご自身の筆で感じてみてください。</span><span class="lang-en">Kanji are not just symbols; they are like beautiful paintings, with each character holding its own meaning and story. Feel the artistic beauty of the Japanese language with your own brush.</span></p>
@@ -312,7 +343,10 @@
                             <h3><span class="lang-ja">③ 心に残る、あなただけの日本土産</span><span class="lang-en">③ A Souvenir for Your Heart and Home</span></h3>
                             <p><span class="lang-ja">この教室での体験が、あなたの日本への興味をさらに深めるきっかけとなることを願っています。ご自身の手で創り上げた作品は、旅の記憶を永遠に留める、何より特別な「お土産」になるはずです。</span><span class="lang-en">We hope this experience deepens your interest in Japan. The work you create with your own hands will become a special souvenir, eternally holding the memories of your journey.</span></p>
                         </div>
-                        <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690289/1749915767693_w3v6en.jpg" alt="お土産としての書道作品">
+                        <picture>
+                           <source srcset="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1753971819/Pokecut_1753971478932_gtvuqi.jpg" media="(min-width: 600px)">
+                           <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/c_scale,w_600/v1753971819/Pokecut_1753971478932_gtvuqi.jpg" alt="お土産としての書道作品">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -322,7 +356,10 @@
              <div class="container">
                 <div class="two-columns">
                      <div class="instructor-image">
-                        <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690290/1749915770830_nvy207.jpg" alt="指導中の講師の様子">
+                        <picture>
+                           <source srcset="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1753971819/Pokecut_1753971401270_chamks.jpg" media="(min-width: 600px)">
+                           <img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/c_scale,w_600/v1753971819/Pokecut_1753971401270_chamks.jpg" alt="指導中の講師の様子">
+                        </picture>
                     </div>
                     <div class="instructor-text">
                         <h2>
@@ -390,7 +427,7 @@
 
         <!-- ライトボックス用のHTML -->
         <div class="lightbox" id="lightbox">
-            <span class="close-btn" id="close-lightbox">&times;</span>
+            <span class="close-btn" id="close-lightbox">×</span>
             <div class="lightbox-content">
                 <img src="" alt="拡大画像" id="lightbox-img">
                 <div class="lightbox-thumbnails" id="lightbox-thumbnails"></div>
@@ -453,7 +490,7 @@
                 <a href="index.html"><img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690192/ChatGPT_Image_2025%E5%B9%B46%E6%9C%8817%E6%97%A5_20_03_53_ubf0rl.png" alt="MIA 書道 ロゴ"></a>
             </div>
             <nav class="footer-nav">
-                 <p>&copy; 2025 Mia Shodo | <a href="#">プライバシーポリシー</a></p>
+                 <p>© 2025 Mia Shodo | <a href="#">プライバシーポリシー</a></p>
             </nav>
         </div>
     </footer>
