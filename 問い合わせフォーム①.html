@@ -77,13 +77,17 @@
         }
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
-        .form-group input, .form-group select {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 1rem;
             font-family: var(--font-body);
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
         }
         .form-group-checkbox { display: flex; align-items: center; }
         .form-group-checkbox input { width: auto; margin-right: 10px; transform: scale(1.2); }
@@ -95,6 +99,13 @@
         }
         .submit-btn:hover { background-color: #b82a34; }
         #calendar-embed iframe { border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        
+        /* ▼▼▼ 必須項目のマークのスタイルを追加 ▼▼▼ */
+        .required-mark {
+            color: var(--accent-color);
+            margin-left: 8px;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -132,25 +143,111 @@
             </div>
 
             <div class="form-container">
-                <!-- ▼▼▼ フォームの送信先をご指定のURLに修正しました ▼▼▼ -->
+                <!-- ▼▼▼ フォームの送信先をご自身のURLに設定してください ▼▼▼ -->
                 <form action="https://formspree.io/f/mzzgopdl" method="POST">
                     
-                    <!-- ▼▼▼ 【重要】送信完了ページのURLを、あなたのサイトのドメインに合わせて修正してください ▼▼▼ -->
+                    <!-- ▼▼▼ 送信完了ページのURLを、公開したサイトのURLに合わせて修正してください ▼▼▼ -->
                     <input type="hidden" name="_next" value="https://zesty-melomakarona-b21ddf.netlify.app/thank-you.html">
                     
-                    <!-- ▼▼▼ 【新規追加】CCメールアドレスの設定 ▼▼▼ -->
+                    <!-- ▼▼▼ CCメールアドレスの設定 ▼▼▼ -->
                     <input type="hidden" name="_cc" value="salsamia83@gmail.com">
 
                     <!-- フォーム項目 -->
-                    <div class="form-group"><label for="name"><span class="lang-ja">氏名</span><span class="lang-en">Name</span></label><input type="text" id="name" name="氏名" required data-ja-placeholder="山田 太郎" data-en-placeholder="John Smith"></div>
-                    <div class="form-group"><label for="age"><span class="lang-ja">年齢</span><span class="lang-en">Age</span></label><input type="number" id="age" name="年齢" data-ja-placeholder="35" data-en-placeholder="35"></div>
-                    <div class="form-group"><label for="participants"><span class="lang-ja">参加人数</span><span class="lang-en">Number of participants</span></label><input type="number" id="participants" name="参加人数" required min="1" data-ja-placeholder="2" data-en-placeholder="2"></div>
-                    <div class="form-group"><label for="date1"><span class="lang-ja">参加日の候補①</span><span class="lang-en">Preferred date 1</span></label><input type="date" id="date1" name="参加日の候補1" required></div>
-                    <div class="form-group"><label for="date2"><span class="lang-ja">参加日の候補②</span><span class="lang-en">Preferred date 2</span></label><input type="date" id="date2" name="参加日の候補2"></div>
-                    <div class="form-group"><label for="date3"><span class="lang-ja">参加日の候補③</span><span class="lang-en">Preferred date 3</span></label><input type="date" id="date3" name="参加日の候補3"></div>
-                    <div class="form-group"><label for="course"><span class="lang-ja">申し込みコース</span><span class="lang-en">Course</span></label><select id="course" name="申し込みコース"><option value="体験コース" data-ja="体験コース (10,000円)" data-en="Standard Course (¥10,000)"></option><option value="ランチ付き体験コース" data-ja="ランチ付き体験コース (12,000円)" data-en="Course with Lunch (¥12,000)"></option></select></div>
-                    <div class="form-group"><label for="language"><span class="lang-ja">希望言語</span><span class="lang-en">Preferred language</span></label><select id="language" name="希望言語"><option value="日本語" data-ja="日本語" data-en="Japanese"></option><option value="英語" data-ja="英語" data-en="English"></option></select></div>
-                    <div class="form-group-checkbox"><input type="checkbox" id="agreement" name="agreement" required><label for="agreement"><span class="lang-ja">内容を確認し、申し込みます。</span><span class="lang-en">I confirm the details and wish to apply.</span></label></div>
+                    <div class="form-group">
+                        <label for="name">
+                            <span class="lang-ja">氏名<span class="required-mark">※</span></span>
+                            <span class="lang-en">Name<span class="required-mark">*</span></span>
+                        </label>
+                        <input type="text" id="name" name="氏名" required data-ja-placeholder="山田 太郎" data-en-placeholder="John Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">
+                            <span class="lang-ja">年齢</span>
+                            <span class="lang-en">Age</span>
+                        </label>
+                        <input type="number" id="age" name="年齢" data-ja-placeholder="35" data-en-placeholder="35">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="lang-ja">メールアドレス<span class="required-mark">※</span></span>
+                            <span class="lang-en">Email<span class="required-mark">*</span></span>
+                        </label>
+                        <input type="email" id="email" name="メールアドレス" required data-ja-placeholder="example@email.com" data-en-placeholder="example@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">
+                            <span class="lang-ja">電話番号<span class="required-mark">※</span></span>
+                            <span class="lang-en">Phone Number<span class="required-mark">*</span></span>
+                        </label>
+                        <input type="tel" id="phone" name="電話番号" required data-ja-placeholder="090-1234-5678" data-en-placeholder="090-1234-5678">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="participants">
+                            <span class="lang-ja">参加人数<span class="required-mark">※</span></span>
+                            <span class="lang-en">Number of participants<span class="required-mark">*</span></span>
+                        </label>
+                        <input type="number" id="participants" name="参加人数" required min="1" data-ja-placeholder="2" data-en-placeholder="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="date1">
+                            <span class="lang-ja">参加日の候補①<span class="required-mark">※</span></span>
+                            <span class="lang-en">Preferred date 1<span class="required-mark">*</span></span>
+                        </label>
+                        <input type="date" id="date1" name="参加日の候補1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date2">
+                            <span class="lang-ja">参加日の候補②</span>
+                            <span class="lang-en">Preferred date 2</span>
+                        </label>
+                        <input type="date" id="date2" name="参加日の候補2">
+                    </div>
+                    <div class="form-group">
+                        <label for="date3">
+                            <span class="lang-ja">参加日の候補③</span>
+                            <span class="lang-en">Preferred date 3</span>
+                        </label>
+                        <input type="date" id="date3" name="参加日の候補3">
+                    </div>
+                    <div class="form-group">
+                        <label for="course">
+                            <span class="lang-ja">申し込みコース<span class="required-mark">※</span></span>
+                            <span class="lang-en">Course<span class="required-mark">*</span></span>
+                        </label>
+                        <select id="course" name="申し込みコース" required>
+                            <option value="" disabled selected data-ja="コースを選択してください" data-en="Please select a course"></option>
+                            <option value="体験コース" data-ja="体験コース (10,000円)" data-en="Standard Course (¥10,000)"></option>
+                            <option value="ランチ付き体験コース" data-ja="ランチ付き体験コース (12,000円)" data-en="Course with Lunch (¥12,000)"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">
+                            <span class="lang-ja">希望言語</span>
+                            <span class="lang-en">Preferred language</span>
+                        </label>
+                        <select id="language" name="希望言語">
+                            <option value="日本語" data-ja="日本語" data-en="Japanese"></option>
+                            <option value="英語" data-ja="英語" data-en="English"></option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="remarks">
+                            <span class="lang-ja">備考</span>
+                            <span class="lang-en">Remarks</span>
+                        </label>
+                        <textarea id="remarks" name="備考" data-ja-placeholder="アレルギー情報や、その他ご要望があればご記入ください。" data-en-placeholder="Please enter any allergies or other requests."></textarea>
+                    </div>
+
+                    <div class="form-group-checkbox">
+                        <input type="checkbox" id="agreement" name="agreement" required>
+                        <label for="agreement">
+                            <span class="lang-ja">内容を確認し、申し込みます。<span class="required-mark">※</span></span>
+                            <span class="lang-en">I confirm the details and wish to apply.<span class="required-mark">*</span></span>
+                        </label>
+                    </div>
                     
                     <button type="submit" class="submit-btn">
                         <span class="lang-ja">送信する</span>
