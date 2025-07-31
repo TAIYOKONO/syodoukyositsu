@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ▼▼▼ 【修正】Content Security Policyを追加 ▼▼▼ -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
+        script-src 'self' 'unsafe-inline'; 
+        img-src 'self' https://res.cloudinary.com; 
+        frame-src 'self' https://calendar.google.com; 
+        form-action 'self' https://formspree.io;
+    ">
     <title>お申し込み・お問い合わせ - Mia Shodo</title>
     <!-- Google Fonts and Font Awesome from index.html -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,7 +110,6 @@
         .submit-btn:hover { background-color: #b82a34; }
         #calendar-embed iframe { border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
         
-        /* ▼▼▼ 必須項目のマークのスタイルを追加 ▼▼▼ */
         .required-mark {
             color: var(--accent-color);
             margin-left: 8px;
