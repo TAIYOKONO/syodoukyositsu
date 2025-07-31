@@ -22,7 +22,7 @@
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-body); line-height: 1.8; font-size: 16px; }
         .container { width: 90%; max-width: 1100px; margin: 0 auto; }
-        .section { padding: 150px 0 100px; text-align: center; }
+        .section { padding: 120px 0 100px; text-align: center; }
         h2 {
             font-family: var(--font-heading);
             font-weight: 700;
@@ -45,17 +45,24 @@
         
         /* --- ヘッダーとフッター (index.htmlと同様) --- */
         .site-header { position: sticky; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; z-index: 1000; background-color: rgba(253, 251, 245, 0.95); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .logo img { height: 50px; }
+        .logo img { height: 60px; }
         .main-nav a { color: var(--text-color); text-decoration: none; font-weight: bold; margin-left: 20px; padding: 8px 12px; border-radius: 5px; transition: background-color 0.3s; }
         .main-nav a:hover { background-color: rgba(0,0,0,0.05); }
         .contact-btn { background-color: var(--accent-color); color: white !important; }
         .contact-btn:hover { background-color: #b82a34; }
-        .site-footer { text-align: center; padding: 40px 0; border-top: 1px solid #eee; margin-top: 50px; }
-        .site-footer .logo img { height: 40px; margin-bottom: 20px; }
-        .social-buttons { margin-bottom: 30px; }
+        .site-footer { padding: 40px 0; margin-top: 50px; border-top: 1px solid #eee; }
+        .site-footer .social-buttons { text-align: center; margin-bottom: 40px; }
         .social-buttons a { color: var(--text-color); font-size: 2rem; margin: 0 20px; transition: color 0.3s; }
         .social-buttons a:hover { color: var(--accent-color); }
-        .footer-nav p { color: #666; }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-bottom .logo img { height: 50px; }
+        .footer-nav p { color: #666; font-size: 0.9rem; margin: 0; }
         .footer-nav a { color: #666; text-decoration: none; }
         
         /* --- フォーム専用スタイル --- */
@@ -93,7 +100,7 @@
 <body>
     <header class="site-header" id="site-header">
         <div class="logo">
-            <a href="index.html"><img src="https://i.imgur.com/uR5sH6A.jpeg" alt="MIA 書道 ロゴ"></a>
+            <a href="index.html"><img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690192/ChatGPT_Image_2025%E5%B9%B46%E6%9C%8817%E6%97%A5_20_03_53_ubf0rl.png" alt="MIA 書道 ロゴ"></a>
         </div>
         <nav class="main-nav">
             <a href="contact.html" class="contact-btn">
@@ -120,16 +127,19 @@
                     <span class="lang-en"><b>▼ Check our availability below ▼</b></span>
                 </p>
                 <!-- ▼▼▼ ここにお客様ご自身のGoogleカレンダーの埋め込みコードを貼り付けてください ▼▼▼ -->
-                <iframe src="https://calendar.google.com/calendar/embed?src=ja.japanese%23holiday%40group.v.calendar.google.com&ctz=Asia%2FTokyo" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://calendar.google.com/calendar/embed?src=salsamia83%40gmail.com&ctz=Asia%2FTokyo" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
                 <!-- ▲▲▲ ここまで ▲▲▲ -->
             </div>
 
             <div class="form-container">
-                <!-- ▼▼▼ ここにFormspreeで取得した、お客様ご自身のURLを設定してください ▼▼▼ -->
-                <form action="https://formspree.io/f/YOUR_UNIQUE_CODE" method="POST">
+                <!-- ▼▼▼ フォームの送信先をご指定のURLに修正しました ▼▼▼ -->
+                <form action="https://formspree.io/f/mzzgopdl" method="POST">
                     
-                    <!-- 送信完了時のリダイレクト先を設定 -->
-                    <input type="hidden" name="_next" value="https://YOUR_SITE_DOMAIN/thank-you.html">
+                    <!-- ▼▼▼ 【重要】送信完了ページのURLを、あなたのサイトのドメインに合わせて修正してください ▼▼▼ -->
+                    <input type="hidden" name="_next" value="https://zesty-melomakarona-b21ddf.netlify.app/thank-you.html">
+                    
+                    <!-- ▼▼▼ 【新規追加】CCメールアドレスの設定 ▼▼▼ -->
+                    <input type="hidden" name="_cc" value="salsamia83@gmail.com">
 
                     <!-- フォーム項目 -->
                     <div class="form-group"><label for="name"><span class="lang-ja">氏名</span><span class="lang-en">Name</span></label><input type="text" id="name" name="氏名" required data-ja-placeholder="山田 太郎" data-en-placeholder="John Smith"></div>
@@ -151,17 +161,21 @@
         </div>
     </main>
     <footer class="site-footer">
-        <div class="social-buttons">
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="LINE"><i class="fab fa-line"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <div class="container">
+            <div class="social-buttons">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LINE"><i class="fab fa-line"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-bottom">
+                <div class="logo">
+                    <a href="index.html"><img src="https://res.cloudinary.com/dtdf2xgpz/image/upload/v1750690192/ChatGPT_Image_2025%E5%B9%B46%E6%9C%8817%E6%97%A5_20_03_53_ubf0rl.png" alt="MIA 書道 ロゴ"></a>
+                </div>
+                <nav class="footer-nav">
+                     <p>&copy; 2025 Mia Shodo | <a href="#">プライバシーポリシー</a></p>
+                </nav>
+            </div>
         </div>
-        <div class="logo">
-            <a href="index.html"><img src="https://i.imgur.com/uR5sH6A.jpeg" alt="MIA 書道 ロゴ"></a>
-        </div>
-        <nav class="footer-nav">
-             <p>&copy; 2025 Mia Shodo | <a href="#">プライバシーポリシー</a></p>
-        </nav>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
